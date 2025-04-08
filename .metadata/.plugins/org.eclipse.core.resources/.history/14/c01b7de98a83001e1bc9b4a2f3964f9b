@@ -1,0 +1,48 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+ 	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Query Result</title>
+</head>
+	<body>
+	 <%@page import="jsp_azure_test.DataHandler"%>
+	 <%@page import="java.sql.ResultSet"%>
+	 <%@page import="java.sql.Array"%>
+	 <%
+	 DataHandler handler = new DataHandler();
+	 
+	 // Get the attribute values passed from the input form.
+	 String lower_category = request.getParameter("lcategory");
+	 String upper_category = request.getParameter("ucategory");
+
+	 /*
+	  * If the user hasn't filled out all the time, movie name and duration. This is very simple checking.
+	  */
+	  if (lower_category == null || upper_category == null ||  lower_category.equals("") || upper_category.equals("")) {
+	  		response.sendRedirect("add_query12_form.jsp");
+	  } else {
+	  		int upper_category_int = Integer.parseInt(upper_category);
+	  		int lower_category_int  = Integer.parseInt(lower_category);
+	  		ResultSet rs = handler.retrieveCustomer(lower_category_int,upper_category_int);
+  			if (rs == null) { // Something went wrong
+  		 	%>
+  		 		<h2>There was a problem retrieving the customers</h2>
+  		 	<%
+	  		} else { // Confirm success to the user
+		 		%>
+		  		<h2>Customers:</h2>
+		  		 <ul>
+			  		 <li>Lower Category Num: <%=lower_category%></li>
+			  		 <li>Upper Category Num: <%=upper_category%></li>
+			  	</ul>
+
+	 			<a href="Query12.jsp">See all Customer Range.</a>
+	 			<%
+ 		}
+ 	}
+ 	%>
+	</body>
+</html>
