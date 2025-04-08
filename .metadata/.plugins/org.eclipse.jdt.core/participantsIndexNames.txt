@@ -1,3 +1,0 @@
-INDEX VERSION 1.134
-/Users/sofiaschnurrenberger/Desktop/SCHNURRENBERGER_SOFIA_IP_TASK7/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/296192459.index
-/Schnurrenberger_Sofia_IP_Task7/src/main/java
